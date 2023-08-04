@@ -23,3 +23,27 @@
 .product-details p {
   font-size: 1.2rem;
 }
+
+.categ-tabs {
+  display: flex;
+  justify-content: center;
+  margin: 3px;
+}
+
+.categ-tabs #category {
+  background-color: transparent;
+  border-radius: none;
+  padding: none;
+  margin: 1.6rem 0 0 0;
+  cursor: none;
+  font-size: 20px;
+}
+
+.categ-tabs p {
+  background-color: #eee;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 2rem;
+  cursor: pointer;
+}
+

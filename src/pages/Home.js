@@ -1,13 +1,12 @@
 import React from 'react'
 import Product from '../components/Product'
+import Category from '../components/Category'
 
 const Home = () => {
   return (
     <>
     <div className='container'>
-        <h1 className='text-center text-primary my-3'>Welcome to Redux Ekart Store</h1>
-        <hr />
-
+        <Category />
         <Product />
     </div>
     </>

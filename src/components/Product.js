@@ -4,27 +4,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { add } from '../store/cartSlice'
 import {Link} from 'react-router-dom'
 import {toast} from 'react-toastify'
+import { STATUSES } from '../store/productSlice'
+import { fetchProducts } from '../store/productSlice'
 
 const Product = () => {
 
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-  const [products, setProducts] = useState([])
+
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart)
+  const {data: products, status} = useSelector((state) => state.product)
+  const cartItems = useSelector((state) => state.cart) 
 
   useEffect(() => {
-    setLoading(true)
-    axios.get('https://fakestoreapi.com/products')
-      .then((res) => {
-        setProducts(res.data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.log(err.message)
-        setError(err.message)
-        setLoading(false)
-      })
+    dispatch(fetchProducts('https://fakestoreapi.com/products'))
   }, [])
 
   const addToCart = (product) => {
@@ -44,7 +36,7 @@ const Product = () => {
     }
   }
 
-  if(loading) {
+  if(status === STATUSES.LOADING) {
     return (
       <div className="container text-center mt-5">
         <div className="spinner-border text-primary" role="status">
@@ -54,7 +46,7 @@ const Product = () => {
     )
   }
 
-  if(error) {
+  if(status === STATUSES.ERROR) {
     return (
       <div className="alert alert-danger" role="alert">
         ERROR: {error}

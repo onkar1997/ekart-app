@@ -30,7 +30,7 @@ const ProductDetail = () => {
     const addToCart = (product) => {
         if(cartItems.length > 0) {
             cartItems.map((item) => {
-                if(item.id == product.id) {
+                if(item.id === product.id) {
                     toast.error('Product already added to cart')
                 }
                 else {
